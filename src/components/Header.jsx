@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth, provider, storage } from "../firebase";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import { selectUserName, selectUserPhoto, setSignOutState, setUserLoginDetails } from "../store/slices/UserSlice";
 import { useEffect } from "react";
 
@@ -64,24 +64,24 @@ const Header = () => {
       ) : (
         <>
           <NavMenu>
-            <a href="/home">
+            <Link to="/home">
               <span>Home</span>
-            </a>
-            <a href="/search">
+            </Link>
+            <Link to="/search">
               <span>Search</span>
-            </a>
-            <a href="/events">
+            </Link>
+            <Link to="/events">
               <span>Events</span>
-            </a>
-            <a href="/clubs">
+            </Link>
+            <Link to="/clubs">
               <span>Clubs</span>
-            </a>
-            <a href="/connect">
+            </Link>
+            <Link to="/connect">
               <span>Connect+</span>
-            </a>
-            <a href="/aboutus">
+            </Link>
+            <Link to="/aboutus">
               <span>About Us</span>
-            </a>
+            </Link>
           </NavMenu>
           <LogOut>
             <UserImg src={userPhoto} alt={userName} />

@@ -4,56 +4,61 @@ import x_logo from "../Asserts/x_logo.svg";
 import logo_linkedin from "../Asserts/logo_linkedin.svg";
 import logo_instagram from "../Asserts/logo_instagram.svg";
 import logo_gmail from "../Asserts/logo_gmail.svg";
-
-import Routing from "./Routing";
+import { useSelector } from "react-redux";
+import { selectUserName } from "../store/slices/UserSlice";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
+  const userName = useSelector(selectUserName);
   return (
     <>
-      <Container>
-        <FooterImg>
-          <img src={FooterImgSrc} alt={"FooterImg"} />
-        </FooterImg>
-        <QuickLink>
-          <QLHeader>Quick Links</QLHeader>
-          <Link to="/home">Home</Link>
-          <Link to="/search">Search</Link>
-          <Link to="/events">Events</Link>
-          <Link to="/clubs">Clubs</Link>
-          <Link to="/connect">Connect+</Link>
-          <Link to="/aboutus">About Us</Link>
-        </QuickLink>
-        <OtherLinks>
-          <Link to="/t&c">Terms And Conditions</Link>
-          <Link to="/contact">Contact</Link>
-        </OtherLinks>
-        <Socials>
-          <SHeader>Get In Touch</SHeader>
-          <Anchors>
-            <Anchor>
-              <a href="http://">
-                <img src={x_logo} alt="X" />
-              </a>
-            </Anchor>
-            <Anchor>
-              <a href="http://">
-                <img src={logo_linkedin} alt="LinkedIn" />
-              </a>
-            </Anchor>
-            <Anchor>
-              <a href="http://">
-                <img src={logo_instagram} alt="Insta" />
-              </a>
-            </Anchor>
-            <Anchor>
-              <a href="http://">
-                <img src={logo_gmail} alt="Gmail" />
-              </a>
-            </Anchor>
-          </Anchors>
-        </Socials>
-      </Container>
+      {userName ? (
+        <Container>
+          <FooterImg>
+            <img src={FooterImgSrc} alt={"FooterImg"} />
+          </FooterImg>
+          <QuickLink>
+            <QLHeader>Quick Links</QLHeader>
+            <Link to="/home">Home</Link>
+            <Link to="/search">Search</Link>
+            <Link to="/events">Events</Link>
+            <Link to="/clubs">Clubs</Link>
+            <Link to="/connect">Connect+</Link>
+            <Link to="/aboutus">About Us</Link>
+          </QuickLink>
+          <OtherLinks>
+            <Link to="/t&c">Terms And Conditions</Link>
+            <Link to="/contact">Contact</Link>
+          </OtherLinks>
+          <Socials>
+            <SHeader>Get In Touch</SHeader>
+            <Anchors>
+              <Anchor>
+                <a href="http://">
+                  <img src={x_logo} alt="X" />
+                </a>
+              </Anchor>
+              <Anchor>
+                <a href="http://">
+                  <img src={logo_linkedin} alt="LinkedIn" />
+                </a>
+              </Anchor>
+              <Anchor>
+                <a href="http://">
+                  <img src={logo_instagram} alt="Insta" />
+                </a>
+              </Anchor>
+              <Anchor>
+                <a href="http://">
+                  <img src={logo_gmail} alt="Gmail" />
+                </a>
+              </Anchor>
+            </Anchors>
+          </Socials>
+        </Container>
+      ) : (
+        <></>
+      )}
     </>
   );
 };
@@ -78,7 +83,7 @@ const FooterImg = styled.div`
     height: 20rem;
     width: 25rem;
     padding: 3rem;
-    margin-left:-1rem;
+    margin-left: -1rem;
   }
 `;
 
