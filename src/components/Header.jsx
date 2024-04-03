@@ -175,7 +175,7 @@ const Login = styled.button`
   border: 1px solid white;
   border-radius: 4px;
   transition: all 0.2s ease 0s;
-
+  margin-right: 1rem;
   &:hover {
     background-color: #0056b7;
     color: white;

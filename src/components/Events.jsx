@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import styled from "styled-components";
 
 const Events = () => {
-  return (
-    <div>Events</div>
-  )
-}
+  return <Container>Events</Container>;
+};
 
-export default Events
+const Container = styled.div`
+  margin-top: 5rem;
+`;
+
+export default Events;
