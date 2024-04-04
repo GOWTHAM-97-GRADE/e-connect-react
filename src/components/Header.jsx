@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { auth, provider, storage } from "../firebase";
+import { signInWithPopup } from "firebase/auth";
+import { auth, provider} from "../firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate,Link } from "react-router-dom";
 import { selectUserName, selectUserPhoto, setSignOutState, setUserLoginDetails } from "../store/slices/UserSlice";
