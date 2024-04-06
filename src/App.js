@@ -8,7 +8,7 @@ import Connect from "./components/Connect";
 import AboutUs from "./components/AboutUs";
 import Clubs from "./components/Clubs";
 import { Route, Routes } from "react-router-dom";
-import Footer from './components/Footer';
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -24,8 +24,7 @@ function App() {
         <Route path="/connect" element={<Connect />} />
         <Route path="/aboutus" element={<AboutUs />} />
       </Routes>
-      <Footer/>
-      
+      <Footer/> 
     </div>
   );
 }

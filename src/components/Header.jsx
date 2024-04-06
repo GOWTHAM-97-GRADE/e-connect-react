@@ -1,16 +1,17 @@
 import styled from "styled-components";
 import { signInWithPopup } from "firebase/auth";
-import { auth, provider} from "../firebase";
+import { auth, provider } from "../firebase";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { selectUserName, selectUserPhoto, setSignOutState, setUserLoginDetails } from "../store/slices/UserSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Header = () => {
   const dispactch = useDispatch();
   const history = useNavigate();
   const userName = useSelector(selectUserName);
   const userPhoto = useSelector(selectUserPhoto);
+  const [scrollPos, setScrollPos] = useState(0);
 
   const setUser = (user) => {
     dispactch(
@@ -30,6 +31,17 @@ const Header = () => {
       }
     });
   }, [userName]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollPos(document.body.getBoundingClientRect().top);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const handleAuth = () => {
     if (!userName) {
@@ -54,7 +66,7 @@ const Header = () => {
   };
 
   return (
-    <Nav>
+    <Nav hide={scrollPos < 0}>
       {/* <Logo>
         <img src="" alt="" srcset="" />
       </Logo> */}
@@ -96,8 +108,8 @@ const Header = () => {
 };
 
 const Nav = styled.nav`
-  position: fixed;
-  top: 0;
+  position: sticky; /* Set position to sticky */
+  top: ${(props) => (props.hide ? "-60px" : "0")}; 
   left: 0;
   right: 0;
   height: 60px;
@@ -105,6 +117,7 @@ const Nav = styled.nav`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  transition: top 0.3s ease; /* Add smooth transition */
 `;
 
 const NavMenu = styled.div`
@@ -127,7 +140,7 @@ const NavMenu = styled.div`
     span {
       color: rgb(54, 50, 50);
       font-size: 13px;
-      opacity: 0.8;
+      opacity: 1;
       line-height: 1.08;
       padding: 2px 0px;
       white-space: nowrap;
