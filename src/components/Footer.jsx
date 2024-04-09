@@ -7,34 +7,14 @@ import logo_gmail from "../Asserts/logo_gmail.svg";
 import { useSelector } from "react-redux";
 import { selectUserName } from "../store/slices/UserSlice";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
 
 const Footer = () => {
   const userName = useSelector(selectUserName);
-  const [showFooter, setShowFooter] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY || document.documentElement.scrollTop;
-
-      const documentHeight = document.documentElement.scrollHeight;
-      const viewportHeight = window.innerHeight;
-
-      // If the user has scrolled to the bottom of the page, show the footer
-      setShowFooter(scrollPosition + viewportHeight >= documentHeight);
-    };
-
-    // Attach scroll event listener
-    window.addEventListener("scroll", handleScroll);
-
-    // Clean up
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <>
       {userName ? (
-        <Container show={showFooter}>
+        <Container >
           <FooterImg>
             <img src={FooterImgSrc} alt={"FooterImg"} />
           </FooterImg>
