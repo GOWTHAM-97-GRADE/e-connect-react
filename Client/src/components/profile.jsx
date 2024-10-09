@@ -50,7 +50,7 @@ const Profile = () => {
     <Container>
       <ProfileTitle>
         <TitleText>STUDENT PROFILE</TitleText>
-        <ConnectButton to="/connect">connect+</ConnectButton>
+        <ConnectButton to="/connect">Posts</ConnectButton>
       </ProfileTitle>
       {showModeText && <ModeText>{isEditing ? "Edit Mode" : "View Mode"}</ModeText>}
       <ProfileContent>

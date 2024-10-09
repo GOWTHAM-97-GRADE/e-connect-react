@@ -19,19 +19,37 @@ const Header = () => {
     //const history=useNavigate();
   const[cookies,setCookies,removeCookies]=useCookies([]);
 
+
+  const setUserCookies = (username) => {
+    const jwtCookie = cookies.jwt; 
+
+    if (jwtCookie) {
+        const expirationDate = new Date();
+        expirationDate.setHours(expirationDate.getHours() + 1); 
+        setCookies('username', username, {
+            path: '/',
+            expires: expirationDate,
+        });
+    } else {
+        console.error('JWT cookie is not set.');
+    }
+};
+
   useEffect(()=>{
     const verifyUser=async()=>{
       {
         const {data}= await axios.post(
-          "http://localhost:4000",
+          "http://localhost:8000",
           {},
           {withCredentials:true}
         );
         if(!data.status){
             removeCookies("jwt");
+            removeCookies("username");
             history("/signup");
         }
         else{
+          setUserCookies(data.user);
           if(showGreet){
               if(cookies!=null){ toast(`HI ${data.user}`);};
               setShowGreet(false);
@@ -88,7 +106,7 @@ const Header = () => {
               <span>Clubs</span>
             </Link>
             <Link to="/connect">
-              <span>Connect+</span>
+              <span>Posts</span>
             </Link>
             <Link to="/aboutus">
               <span>About Us</span>
